@@ -1,1 +1,94 @@
-Hello World
+<!DOCTYPE html>
+<html lang=es>
+
+<head>
+    <title>Prueba BSale</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"
+        integrity="sha256-xH4q8N0pEzrZMaRmd7gQVcTZiFei+HfRTBPJ1OGXC0k=" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1 class="text-center">Tienda BSale</h1>
+    <br />
+    <!--Buscador-->
+    <div id="buscador" class="container text-center">
+        <div class="row">
+            <div class="col-3">
+            </div>
+            <div class="col-6">
+                <input id="txtInput" class="form-text" style="width:80%"
+                    placeholder="Porfavor ingrese el nombre o parte de, del producto a buscar">
+                <button class="btn-success" onclick="buscarProducto()">Buscar</button>
+            </div>
+            <div class="col-3">
+
+            </div>
+        </div>
+    </div>
+    <!--productos-->
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div id="listaProductos" class="row justify-content-around">
+            <div class="col-3 align-items-center border-2 border-dark border">
+                <p class="align-self-center text-center fw-bold">
+                    ENERGETICA MR BIG
+                </p>
+                <img class="align-self-center"
+                    src="https://dojiw2m9tvv09.cloudfront.net/11132/product/misterbig3308256.jpg">
+                <p class="align-self-center text-center" style="font-weight: bold;">
+                    $3500
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+</body>
+
+<script>
+    function inicio() {
+        var request = $.ajax({
+        url: "https://desafio-bsale.herokuapp.com/obtenerProdcutos",
+        method: "GET", 
+        dataType: "json" 
+        });
+
+        request.done(function (respuesta) {
+            console.log(respuesta);       
+        });
+
+        request.fail(function (jqXHR, textStatus) {
+            console.log("Hubo un error: " + textStatus);
+        });
+    }
+
+
+
+    /*
+    <div class="col-3 align-items-center border-2 border-dark border">
+              <p class="align-self-center text-center fw-bold">
+                  ENERGETICA MR BIG
+              </p>
+              <img class="align-self-center" src="https://dojiw2m9tvv09.cloudfront.net/11132/product/misterbig3308256.jpg">
+              <p class="align-self-center text-center" style="font-weight: bold;">
+                  $3500
+              </p>
+          </div>
+
+    */
+    window.onload = inicio;
+</script>
+
+</html>
